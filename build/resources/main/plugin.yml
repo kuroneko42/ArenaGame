@@ -1,0 +1,4 @@
+name: ArenaGame2
+version: '1.0-SNAPSHOT'
+main: na.kuroneko.arenagame2.ArenaGame2
+api-version: '1.20'
