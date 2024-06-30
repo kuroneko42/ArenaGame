@@ -15,16 +15,11 @@ public class GameController {
     private boolean gameStarted = false;
 
     public void startGame(Player player) {
-        if (gameStarted) {
-            return;
-        }
-        gameStarted = true;
-
         PlayerData data = PlayerData.loadFromJson(player.getName());
 
         player.sendMessage("Player Name: " + data.getPlayerName() +
-                "Highest Round: " + data.getHighestRound() +
-                "Play Time: " + data.getPlayTime() + "초");
+                "\nHighest Round: " + data.getHighestRound() +
+                "\nPlay Time: " + data.getPlayTime() + "초");
 
         arena.creatBorder();
         arena.creatFiled();
@@ -35,16 +30,10 @@ public class GameController {
     }
 
     public void endGame(Player player) {
-        if (!gameStarted) {
-            return;
-        }
-
-        gameStarted = false;
-
         arena.resetBorder();
         arena.playerWorldTP(player);
         arena.resetFiled();
         timer.endTimer(player);
-        round.entRound();
+        round.entRound(player);
     }
 }

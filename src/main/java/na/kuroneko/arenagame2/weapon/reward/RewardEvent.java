@@ -53,27 +53,27 @@ public class RewardEvent implements Listener {
     public void onInvClick(InventoryClickEvent event) {
         if (event.getView().getTitle().equals("보상")) {
             event.setCancelled(true);
-        }
 
-        if (event.getCurrentItem() == null || event.getClickedInventory() == null) return;
+            if (event.getCurrentItem() == null || event.getClickedInventory() == null) return;
 
-        Material type = event.getCurrentItem().getType();
-        Player player = (Player) event.getWhoClicked();
+            Material type = event.getCurrentItem().getType();
+            Player player = (Player) event.getWhoClicked();
 
-        switch (type) {
-            case DIAMOND_SWORD -> {
-                giveRandomItems(player, weapon);
-                player.closeInventory();
-            }
+            switch (type) {
+                case DIAMOND_SWORD -> {
+                    giveRandomItems(player, weapon);
+                    player.closeInventory();
+                }
 
-            case COOKED_BEEF -> {
-                giveRandomItems(player, food);
-                player.closeInventory();
-            }
+                case COOKED_BEEF -> {
+                    giveRandomItems(player, food);
+                    player.closeInventory();
+                }
 
-            case DIAMOND_HELMET -> {
-                giveRandomItems(player, armor);
-                player.closeInventory();
+                case DIAMOND_HELMET -> {
+                    giveRandomItems(player, armor);
+                    player.closeInventory();
+                }
             }
         }
     }

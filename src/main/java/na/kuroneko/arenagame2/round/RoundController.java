@@ -11,19 +11,18 @@ public class RoundController {
     private final Round round = new Round();
     private MobSpawn mob = new MobSpawn();
     private WeaponGUI weapon = new WeaponGUI();
-    private Player player;
 
     public void startRound() {
+        mob.spawnMob();
     }
 
-    public void nextRound() {
+    public void nextRound(Player player) {
         round.nextRound();
-        mob.spawnMob();
         weapon.reward(player);
         Bukkit.getScheduler().runTaskLater(ArenaGame2.instance, this::startRound, 200L);
     }
 
-    public void entRound() {
+    public void entRound(Player player) {
         PlayerData data = PlayerData.loadFromJson(player.getName());
         data.setHighestRound(round.getCurrentRound());
         data.saveToJson();

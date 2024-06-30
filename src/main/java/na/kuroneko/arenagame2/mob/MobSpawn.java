@@ -73,7 +73,7 @@ public class MobSpawn implements Listener {
     @EventHandler
     public void onMobDeath(EntityDeathEvent event) {
         if (event.getEntity().getKiller() == player) {
-            roundController.nextRound();
+            roundController.nextRound(player);
         }
     }
 
