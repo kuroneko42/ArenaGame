@@ -23,7 +23,10 @@ public class MobSpawn implements Listener {
     // 라운드를 관리하는 Round 객체를 생성
     private final Round round = new Round();
     private RoundController roundController;
-    private Player player;
+
+    public MobSpawn(RoundController roundController) {
+        this.roundController = roundController;
+    }
 
     // 몬스터를 소환하는 메서드
     public void spawnMob() {
@@ -33,7 +36,7 @@ public class MobSpawn implements Listener {
         // 가져온 몬스터가 null이 아닌 경우에만 실행합니다.
         if (mm != null) {
             // 몬스터를 소환할 위치를 설정
-            Location loc = new Location(world, 0, 49, -11);
+            Location loc = new Location(world, 0, -49, 11);
             // 몬스터를 소환 소환된 몬스터는 ActiveMob 객체로 반환
             ActiveMob spade = mm.spawn(BukkitAdapter.adapt(loc),1 );
 
@@ -72,6 +75,8 @@ public class MobSpawn implements Listener {
 
     @EventHandler
     public void onMobDeath(EntityDeathEvent event) {
+        Player player = event.getEntity().getKiller();
+
         if (event.getEntity().getKiller() == player) {
             roundController.nextRound(player);
         }

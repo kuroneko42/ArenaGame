@@ -9,8 +9,12 @@ import org.bukkit.entity.Player;
 
 public class RoundController {
     private final Round round = new Round();
-    private MobSpawn mob = new MobSpawn();
+    private MobSpawn mob;
     private WeaponGUI weapon = new WeaponGUI();
+
+    public RoundController() {
+        this.mob = new MobSpawn(this); // 여기서 this는 현재 RoundController 인스턴스를 의미합니다.
+    }
 
     public void startRound() {
         mob.spawnMob();
